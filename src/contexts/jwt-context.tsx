@@ -130,3 +130,5 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
         </AuthContext.Provider>
     );
 };
+
+export const AuthConsumer = AuthContext.Consumer;
