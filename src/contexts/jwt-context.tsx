@@ -1,3 +1,5 @@
+'use client';
+
 import type { FC, ReactNode } from 'react';
 import { createContext, useEffect, useReducer, useCallback } from 'react';
 import type { User } from '@/types/user';
