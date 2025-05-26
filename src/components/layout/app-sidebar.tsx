@@ -22,6 +22,12 @@ const data = {
         {
           title: "Users",
           url: "/users",
+          isActive: false,
+        },
+         {
+          title: "Login",
+          url: "/login",
+          isActive: false,
         },
       ],
     },
