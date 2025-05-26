@@ -103,9 +103,23 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
             if (accessToken) {
                 console.log('YYYYYYYYYYYY');
             } else {
-                console.log('AAAAAAAAA');
+                dispatch({
+                    type: ActionTypes.INITIALIZE,
+                    payload: {
+                        isAuthenticated: false,
+                        user: null,
+                    }
+                });
             }
-        } catch (err) {}
+        } catch (err) {
+            dispatch({
+                    type: ActionTypes.INITIALIZE,
+                    payload: {
+                        isAuthenticated: false,
+                        user: null,
+                    }
+                });
+        }
     }, [dispatch]);
 
     useEffect(() => {
