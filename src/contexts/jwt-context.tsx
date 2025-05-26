@@ -1,4 +1,5 @@
-import { createContext } from 'react';
+import type { FC, ReactNode } from 'react';
+import { createContext, useEffect, useReducer, useCallback } from 'react';
 import type { User } from '@/types/user';
 
 interface State {
@@ -84,3 +85,48 @@ export const AuthContext = createContext<AuthContextType>({
     signIn: () => Promise.resolve(),
     signOut: () => Promise.resolve(),
 });
+
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
+export const AuthProvider: FC<AuthProviderProps> = (props) => {
+    const { children } = props;
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const initialize = useCallback(async (): Promise<void> => {
+        try {
+            const accessToken = globalThis.localStorage.getItem('access_token');
+
+            if (accessToken) {
+                console.log('YYYYYYYYYYYY');
+            } else {
+                console.log('AAAAAAAAA');
+            }
+        } catch (err) {}
+    }, [dispatch]);
+
+    useEffect(() => {
+        initialize();
+    }, []);
+
+    const signIn = useCallback(async (email: string, password: string): Promise<void> => {
+        console.log('test');
+    }, [dispatch]);
+
+    const signOut = useCallback(async (): Promise<void> => {
+        console.log('test');
+    }, [dispatch]);
+
+    return (
+        <AuthContext.Provider
+            value={{
+                ...state,
+                signIn,
+                signOut
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
+};
