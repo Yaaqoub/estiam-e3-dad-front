@@ -101,7 +101,8 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
             const accessToken = globalThis.localStorage.getItem('access_token');
 
             if (accessToken) {
-                console.log('YYYYYYYYYYYY');
+                // Get connected user info
+                // Execute user info API
             } else {
                 dispatch({
                     type: ActionTypes.INITIALIZE,
@@ -127,11 +128,19 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
     }, []);
 
     const signIn = useCallback(async (email: string, password: string): Promise<void> => {
-        console.log('test');
+        // Execute Auth API
+        // Save user info + token (Local storage)
+
+        /*dispatch({
+            type: ActionTypes.SIGN_IN,
+            payload: {
+                user
+            }
+        });*/
     }, [dispatch]);
 
     const signOut = useCallback(async (): Promise<void> => {
-        console.log('test');
+        // Remove token + user info
     }, [dispatch]);
 
     return (
