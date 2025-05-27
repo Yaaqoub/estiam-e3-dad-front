@@ -26,7 +26,8 @@ export function AuthGuard({ children }: AuthGuardProps): React.JSX.Element | nul
     }, [isAuthenticated, router]);
 
     useEffect(() => {
-        check();
+        //check();
+        setChecked(true);
     }, []);
 
     if (!checked) {
